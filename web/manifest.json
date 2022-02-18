@@ -1,6 +1,6 @@
 {
-    "name": "app",
-    "short_name": "app",
+    "name": "Otter Social",
+    "short_name": "otter_social",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
