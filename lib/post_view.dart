@@ -52,6 +52,8 @@ class PostView extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18.0,
                 ),
+                autofocus: true,
+                textCapitalization: TextCapitalization.sentences,
               ),
             ),
             Padding(
