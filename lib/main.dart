@@ -18,7 +18,11 @@ class OtterApp extends StatelessWidget {
     return MaterialApp(
       title: 'Otter Social',
       theme: otterThemeData,
-      home: const OtterTabbedView(),
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const ReactiveView(),
+      },
     );
   }
 }
