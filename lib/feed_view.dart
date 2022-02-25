@@ -1,5 +1,5 @@
 import 'package:app/post_view.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class FeedView extends StatelessWidget {
   const FeedView({Key? key}) : super(key: key);
@@ -9,7 +9,7 @@ class FeedView extends StatelessWidget {
     return ListView(
       children: [
         PostView(
-          displayName: "Pico! ✨🇸🇪🇺🇦",
+          displayName: "Pico! ✨🇸🇪",
           username: "@tinyfluffs",
           profilePictureUrl:
               "https://pbs.twimg.com/profile_images/1477634798231379997/UDhiuJtk_400x400.png",
