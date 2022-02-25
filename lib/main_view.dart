@@ -1,5 +1,6 @@
 import 'package:app/drawer.dart';
-import 'package:app/post_view.dart';
+import 'package:app/feed_view.dart';
+import 'package:app/new_post_view.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -8,7 +9,7 @@ class ReactiveView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.of(context).size.shortestSide;
     const breakpoint = 600.0;
     if (screenWidth >= breakpoint) {
       // Widescreen layout
@@ -25,7 +26,6 @@ class ReactiveView extends StatelessWidget {
     } else {
       return Scaffold(
         appBar: AppBar(
-          title: const Text("Feed"),
           leading: Builder(
             builder: (BuildContext ctx) {
               return IconButton(
@@ -47,12 +47,12 @@ class ReactiveView extends StatelessWidget {
 
 Widget mainView(BuildContext context) {
   return Scaffold(
-    body: const Center(child: CircularProgressIndicator()),
+    body: const FeedView(),
     floatingActionButton: FloatingActionButton.extended(
       label: const Text("New Post"),
       icon: const Icon(Icons.add_sharp),
       onPressed: () {
-        Navigator.push(context, _postRouteBuilder(const PostView()));
+        Navigator.push(context, _postRouteBuilder(const NewPostView()));
       },
     ),
   );

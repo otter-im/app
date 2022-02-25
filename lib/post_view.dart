@@ -1,76 +1,199 @@
+import 'package:app/theme.dart';
 import 'package:flutter/material.dart';
 
-double marginWidth(BuildContext context) {
-  double width = MediaQuery.of(context).size.width;
-  if (width > 1900.0) return (width / 100) * (100 / 3);
-  if (width > 1280.0) return (width / 100) * 25;
-  if (width > 900.0) return (width / 100) * 20;
-  if (width > 600.0) return (width / 100) * 10;
-  if (width > 300.0) return 8.0;
-  return 8.0;
-}
-
 class PostView extends StatelessWidget {
-  const PostView({Key? key}) : super(key: key);
+  final String displayName;
+  final String username;
+  final String profilePictureUrl;
+  final String content;
+
+  const PostView({
+    Key? key,
+    required this.displayName,
+    required this.username,
+    required this.profilePictureUrl,
+    required this.content,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("New Post"),
-        leading: Builder(
-          builder: (BuildContext ctx) {
-            return IconButton(
-              onPressed: () => Navigator.pop(context, "back"),
-              icon: const Icon(
-                Icons.arrow_back_sharp,
-                size: 20.0,
-              ),
-            );
-          },
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      decoration: const BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: canvasLight),
         ),
       ),
-      body: Container(
-        margin:
-            EdgeInsets.symmetric(horizontal: marginWidth(context), vertical: 8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.all(8),
-              child: TextField(
-                minLines: 2,
-                maxLines: 8,
-                textAlignVertical: TextAlignVertical.top,
-                keyboardType: TextInputType.multiline,
-                decoration: InputDecoration(
-                  alignLabelWithHint: true,
-                  border: OutlineInputBorder(),
-                  hintText: "What's on your mind?",
-                ),
-                style: TextStyle(
-                  fontSize: 18.0,
-                ),
-                autofocus: true,
-                textCapitalization: TextCapitalization.sentences,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(24.0),
+            clipBehavior: Clip.antiAlias,
+            child: Image.network(
+              this.profilePictureUrl,
+              width: 48.0,
+              height: 48.0,
+              isAntiAlias: true,
+              filterQuality: FilterQuality.high,
+            ),
+          ),
+          Flexible(
+            fit: FlexFit.tight,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(bottom: 8.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Flexible(
+                              child: Text(
+                                this.displayName,
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Flexible(
+                              child: Text(
+                                this.username,
+                                style: TextStyle(
+                                  color: textSecondary,
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Flexible(
+                        fit: FlexFit.tight,
+                        child: Text(this.content),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 8.0),
+                    child: Row(
+                      children: [
+                        Flexible(
+                          child: Icon(
+                            Icons.sms_outlined,
+                            size: 28.0,
+                            color: textSecondary,
+                          ),
+                        ),
+                        Flexible(
+                          child: Icon(
+                            Icons.repeat_rounded,
+                            size: 28.0,
+                            color: textSecondary,
+                          ),
+                        ),
+                        Flexible(
+                          child: Icon(
+                            Icons.star_outline_rounded,
+                            size: 28.0,
+                            color: textSecondary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.all(16),
-                ),
-                onPressed: () {},
-                child: const Icon(
-                  Icons.send_sharp,
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
+
+/*Flexible(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(bottom: 8.0),
+                    child: Row(
+                      children: [
+                        Text(
+                          this.displayName,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          child: Text(
+                            this.username,
+                            style: TextStyle(
+                              color: textSecondary,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(bottom: 8.0),
+                    child: Text(
+                      content,
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(right: 4.0),
+                        child: Icon(
+                          Icons.sms_outlined,
+                          size: 28.0,
+                          color: textSecondary,
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(right: 4.0),
+                        child: Icon(
+                          Icons.repeat_rounded,
+                          size: 28.0,
+                          color: textSecondary,
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(right: 4.0),
+                        child: Icon(
+                          Icons.star_outline_rounded,
+                          size: 28.0,
+                          color: textSecondary,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),*/

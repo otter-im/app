@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 const background = Color(0xFF1C1C27);
 const canvas = Color(0xFF28293D);
+const canvasLight = Color(0xFF404258);
 const error = Color(0xFFCF6679);
+
+const textSecondary = Color(0xFF76768D);
 
 const primary = Color(0xFFE59C4D);
 
@@ -25,8 +28,8 @@ var otterThemeData = ThemeData(
     error: error,
     onPrimary: Colors.black,
     onSecondary: Colors.black,
-    onSurface: Colors.white,
-    onBackground: Colors.white,
+    onSurface: Color(0xCCFFFFFF),
+    onBackground: Color(0xCCFFFFFF),
     onError: Colors.black,
     brightness: Brightness.dark,
   ),
